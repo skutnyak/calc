@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urejanje cen pločevine</title>
+    <link rel="stylesheet" href="edit_prices.css"> <!-- Povezava na ločeno CSS datoteko -->
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Urejanje cen pločevine</h1>
+        </header>
+
+        <!-- Izbira formata pločevine preko sliderja -->
+        <section class="format-section">
+            <div class="slider-container">
+                <span class="slider-label">1000x2000 mm</span>
+                <input type="range" id="sheetSizeSlider" min="0" max="1" value="0" class="slider" oninput="updateSheetSizeDisplay()">
+                <span class="slider-label">1250x2500 mm</span>
+            </div>
+            <div>
+                <span id="sheetSizeDisplay">1000x2000 mm</span> <!-- Prikaz trenutne izbire formata -->
+            </div>
+        </section>
+
+        <!-- Stolpci za tabele cen -->
+        <section id="priceTables" class="hidden">
+            <div class="column">
+                <h2>Železo</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Debelina (mm)</th>
+                            <th>Cena (EUR)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ironPrices">
+                        <!-- Dinamično napolnjeno s cenami za železo -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="column">
+                <h2>Inox</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Debelina (mm)</th>
+                            <th>Cena (EUR)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inoxPrices">
+                        <!-- Dinamično napolnjeno s cenami za inox -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="column">
+                <h2>Aluminij</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Debelina (mm)</th>
+                            <th>Cena (EUR)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="aluminumPrices">
+                        <!-- Dinamično napolnjeno s cenami za aluminij -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Gumbi SHRANI in NAZAJ -->
+        <div class="button-container">
+            <button type="button" class="save-button" onclick="savePrices()">SHRANI</button>
+            <button type="button" class="back-button" onclick="goBackToCalculator()">NAZAJ</button>
+        </div>
+    </div>
+
+    <script src="edit_prices.js"></script>
+</body>
+</html>

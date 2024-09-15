@@ -1,0 +1,136 @@
+/* Osnovni slog za telo strani */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Kontejner za vsebino */
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Glava */
+header h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Slog za slider in napise na levi in desni strani */
+.slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 60px;
+    height: 30px;
+    background: #ddd;
+    outline: none;
+    border-radius: 40px; /* Zaobljeni robovi */
+    margin: 0 10px;
+}
+
+.slider-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Slider thumb */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    background: #4CAF50;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Nežna senca za 3D učinek */
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Nežna senca za 3D učinek */
+}
+
+/* Prikaz trenutne izbire formata */
+#sheetSizeDisplay {
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Stolpci za materiale */
+#priceTables {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.column {
+    background-color: white;
+    padding: 20px;
+    width: 30%;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.column h2 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Skrito stanje, ko še ni izbran format */
+.hidden {
+    display: none;
+}
+
+/* Gumbi na dnu */
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: lightgreen; /* Barva ob hoverju */
+}
+
+.back-button {
+    background-color: red;
+}
+
+.back-button:hover {
+    background-color: lightcoral; /* Barva ob hoverju za rdeč gumb */
+}
