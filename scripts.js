@@ -116,26 +116,72 @@ function calculateAll() {
 
 // Funkcija za izvoz v PDF
 function exportToPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+    var doc = new jsPDF();
 
-    // Dodaj naslov podjetja
-    doc.text('FC-Modul d.o.o.', 10, 20);
+    // Uporabimo standardno pisavo s podporo za šumnike
+    doc.setFont('helvetica');
 
-    // Dodaj datum in številko ponudbe
-    const date = new Date().toLocaleDateString();
-    const offerNumber = 'PON-' + new Date().toISOString().slice(0, 10).replace(/-/g, '') + '-001';
-    doc.text(`Datum izdelave: ${date}`, 150, 20);
-    doc.text(`Številka ponudbe: ${offerNumber}`, 150, 30);
+    // Dodaj ime in naslov podjetja
+    doc.setFontSize(16);
+    doc.text("PREDRAČUN", 105, 20, null, null, "center");
+    
+    doc.setFontSize(12);
+    doc.text("Podjetje XYZ d.o.o.", 105, 30, null, null, "center");
+    doc.text("Naslov ulice 123", 105, 36, null, null, "center");
+    doc.text("1000 Ljubljana", 105, 42, null, null, "center");
 
-    // Dodaj izračune
-    doc.text(document.getElementById('totalCostDisplay').textContent, 10, 50);
-    doc.text(document.getElementById('profitDisplay').textContent, 10, 60);
-    doc.text(document.getElementById('cuttingCostDisplay').textContent, 10, 70);
-    doc.text(document.getElementById('sellingPriceDisplay').textContent, 10, 80);
+    // Dodaj podatke o stranki
+    doc.setFontSize(12);
+    doc.text("Podatki o stranki", 20, 60);
+    doc.text("Ime: " + document.getElementById('customerName').value, 20, 68);
+    doc.text("Naslov: " + document.getElementById('customerAddress').value, 20, 76);
+    doc.text("Telefon: " + document.getElementById('customerPhone').value, 20, 84);
+    doc.text("Email: " + document.getElementById('customerEmail').value, 20, 92);
 
-    // Shrani PDF datoteko
-    doc.save("ponudba.pdf");
+    // Datum in številka predračuna
+    doc.text("Datum: " + new Date().toLocaleDateString(), 150, 60);
+    doc.text("Št. predračuna: " + document.getElementById('invoiceNumber').value, 150, 68);
+
+    // Dodaj tabelo za izračune stroškov
+    doc.setFontSize(12);
+    doc.text("Stroški:", 20, 110);
+    doc.setFontSize(10);
+    doc.text("Postavka", 20, 120);
+    doc.text("Cena (EUR)", 150, 120);
+
+    // Dodaj stroške v tabelo
+    doc.text("Cena materiala:", 20, 130);
+    doc.text(document.getElementById('materialCost').value + " EUR", 150, 130);
+    
+    doc.text("Cena energije:", 20, 140);
+    doc.text(document.getElementById('energyCost').value + " EUR", 150, 140);
+    
+    doc.text("Cena dela:", 20, 150);
+    doc.text(document.getElementById('laborCost').value + " EUR", 150, 150);
+    
+    doc.text("Skupaj:", 20, 160);
+    doc.text(document.getElementById('totalCost').value + " EUR", 150, 160);
+
+    // Dodaj dobiček
+    doc.text("Dobiček:", 20, 170);
+    doc.text(document.getElementById('profit').value + " EUR", 150, 170);
+
+    // Končna cena (prodajna cena)
+    doc.setFontSize(12);
+    doc.text("Prodajna cena:", 20, 190);
+    doc.setFontSize(14);
+    doc.text(document.getElementById('finalPrice').value + " EUR", 150, 190);
+
+    // Podpis
+    doc.setFontSize(10);
+    doc.text("Podpis:", 20, 210);
+    doc.text("_________________________", 20, 220);
+
+    // Shranimo PDF
+    doc.save('predracun.pdf');
+}
+
+
 }
 
 // Ko je stran naložena, naloži cene iz cena.json
