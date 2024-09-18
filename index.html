@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Izračun laserskega razreza</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="https://www.fc-modul.si/wp-content/uploads/2020/06/FC-Modul-Logo.png" alt="FC Modul Logo" class="logo">
+        <h1>Izračun laserskega razreza</h1>
+    </header>
+    
+    <div class="container">
+        <!-- Prvi stolpec - Vnos podatkov za material -->
+        <div class="column">
+            <h2>Material</h2>
+            <div class="form-group">
+                <label for="materialType">Vrsta materiala:</label>
+                <select id="materialType" onchange="updateSheetPrice()">
+                    <option value="iron">Železo</option>
+                    <option value="inox">Inox</option>
+                    <option value="aluminum">Aluminij</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="thickness">Debelina materiala:</label>
+                <select id="thickness" onchange="updateSheetPrice()">
+                    <option value="1">1 mm</option>
+                    <option value="1.5">1.5 mm</option>
+                    <option value="2">2 mm</option>
+                    <option value="3">3 mm</option>
+                    <option value="4">4 mm</option>
+                    <option value="5">5 mm</option>
+                    <option value="6">6 mm</option>
+                    <option value="8">8 mm</option>
+                    <option value="10">10 mm</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sheetSize">Format pločevine:</label>
+                <select id="sheetSize" onchange="updateSheetPrice()">
+                    <option value="1000x2000">1000x2000 mm</option>
+                    <option value="1250x2500">1250x2500 mm</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Cena pločevine:</label>
+                <p id="sheetPriceDisplay">---</p>
+            </div>
+            <div class="form-group">
+                <label>Cena kvadratnega milimetra:</label>
+                <p id="pricePerMm2">---</p>
+            </div>
+<button class="calculate-button" onclick="window.location.href='edit_prices.html'">Uredi cene</button>
+
+        </div>
+
+        <!-- Drugi stolpec - Parametri razreza -->
+        <div class="column">
+            <h2>Parametri razreza</h2>
+            <div class="form-group">
+                <label for="cutLength">Dolžina gabarita (mm):</label>
+                <input type="number" id="cutLength" placeholder="Vpišite dolžino gabarita" oninput="calculateMaterialCost()" />
+            </div>
+            <div class="form-group">
+                <label for="cutWidth">Širina gabarita (mm):</label>
+                <input type="number" id="cutWidth" placeholder="Vpišite širino gabarita" oninput="calculateMaterialCost()" />
+            </div>
+            <div class="form-group">
+                <label for="materialCost">Cena porabljenega materiala (EUR):</label>
+                <p id="materialCostDisplay">---</p>
+            </div>
+            <div class="form-group">
+                <label for="cutTime">Čas reza (sekunde):</label>
+                <input type="number" id="cutTime" placeholder="Vpišite čas v sekundah" />
+            </div>
+            <div class="form-group">
+                <label for="piercingCost">Cena preboja (EUR):</label>
+                <input type="number" id="piercingCost" placeholder="Vpišite ceno preboja" />
+            </div>
+            <div class="form-group">
+                <label for="numCuts">Število prebojev:</label>
+                <input type="number" id="numCuts" placeholder="Vpišite število prebojev" />
+            </div>
+            <div class="form-group">
+                <label for="laserPower">Moč laserja (watt):</label>
+                <input type="number" id="laserPower" value="3000" placeholder="Vpišite moč" />
+            </div>
+            <div class="form-group">
+                <label for="energyCost">Cena kilovatne ure (EUR):</label>
+                <input type="number" id="energyCost" placeholder="Vpišite ceno" />
+            </div>
+        </div>
+
+        <!-- Tretji stolpec - Parametri dobička -->
+        <div class="column">
+            <h2>Parametri dobička</h2>
+            <div class="form-group">
+                <label for="operatorRate">Delovna ura operaterja (EUR/h):</label>
+                <input type="number" id="operatorRate" value="30" placeholder="Vnesite ceno na uro" />
+            </div>
+            <div class="form-group">
+                <label for="sheetChangeCost">Menjava pločevine (EUR):</label>
+                <input type="number" id="sheetChangeCost" value="10" placeholder="Vnesite stroške menjave" />
+                
+                <!-- Slider namesto checkboxa -->
+                <label class="switch">
+                    <input type="checkbox" id="sheetChangeEnabled" onchange="toggleSheetChange()" checked>
+                    <span class="slider round"></span>
+                </label>
+                <label for="sheetChangeEnabled">Vključi menjavo pločevine</label>
+            </div>
+            <div class="form-group">
+                <label for="amortization">Amortizacija (EUR/h):</label>
+                <input type="number" id="amortization" value="0.050" placeholder="Vnesite amortizacijo na uro" />
+            </div>
+            <div class="form-group">
+                <label for="profitMargin">Marža (%):</label>
+                <input type="number" id="profitMargin" placeholder="Vnesite maržo v %" />
+            </div>
+        </div>
+    </div>
+
+    <!-- Povzetek in gumbi -->
+    <div class="summary">
+        <h2>Povzetek</h2>
+        <div class="form-group" id="summary">
+            <p id="totalCostDisplay"><strong>Skupni stroški:</strong> --- EUR</p>
+            <p id="profitDisplay"><strong>Dobiček:</strong> --- EUR</p>
+            <p id="cuttingCostDisplay"><strong>Cena razreza:</strong> --- EUR</p>
+            <p id="sellingPriceDisplay"><strong>Prodajna cena:</strong> --- EUR</p>
+        </div>
+        
+        <button class="calculate-button" onclick="calculateAll()">Izračunaj</button>
+        <button class="pdf-button" style="background-color: red;" onclick="exportToPDF()">Izvozi v PDF</button>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
