@@ -8,9 +8,12 @@ body {
 
 /* Slog za glavo in logotip */
 header {
+    position: relative; /* Omogoča pozicioniranje absolutnih elementov */
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    color: white;
     display: flex;
     align-items: center;
-    padding: 10px 20px;
 }
 
 .logo {
@@ -18,11 +21,29 @@ header {
     margin-right: 20px;
 }
 
-/* Glavni naslov, odstranjen temen okvir in levo poravnano besedilo */
 h1 {
-    text-align: left;
-    padding: 20px;
+    flex-grow: 1; /* Razširi naslov, da zapolni preostali prostor med logotipom in gumbom */
+    margin: 0;
     color: #333;
+    font-size: 24px;
+}
+
+/* Slog za gumb Navodila */
+.help-button {
+    position: absolute;
+    top: 10px; /* Razdalja od zgornjega roba headerja */
+    right: 20px; /* Razdalja od desnega roba headerja */
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.help-button:hover {
+    background-color: #45a049;
 }
 
 /* Splošni slog za vse stolpce */
@@ -39,6 +60,9 @@ h1 {
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 30%;
+}
+.column select {
+    width: 100%;
 }
 
 /* Naslovi v stolpcih */
@@ -66,6 +90,17 @@ select {
     border: 1px solid #ccc;
     font-size: 14px;
 }
+
+input[type="number-prejemnik"],
+select {
+    width: 30%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
 
 /* Gumbi */
 button {
@@ -105,11 +140,6 @@ button {
     padding: 20px;
 }
 
-#summary {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 20px;
-}
 /* Slog za slider */
 .switch {
     position: relative;
@@ -164,15 +194,49 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-/* Dodaj razmik na levo stran sliderja */
+
+/* Doda razmik na levi strani sliderja */
 .switch {
-    margin-top: 20px; /* Dodaš razmik na levi strani sliderja */
+    margin-top: 20px;
 }
-/* Summary section for displaying the calculated values */
+
+/* Povzetek za prikaz izračunanih vrednosti */
 #materialCostDisplay,
 #cuttingCostDisplay,
 #piercingCostDisplay,
 #totalCostDisplay {
-    font-size: 18px; /* Set font size */
+    font-size: 18px;
     font-weight: bold;
+}
+.form-group-horizontal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group-horizontal .form-group {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-group-horizontal .form-group:last-child {
+    margin-right: 0;
+}
+.summary-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.summary {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.recipient-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipient-info .form-group {
+    margin-bottom: 10px;
 }

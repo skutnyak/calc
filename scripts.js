@@ -95,6 +95,15 @@ function calculateAll() {
     // Končna cena vključuje vse stroške (material, razrez, preboji, marža)
     const finalPrice = materialCost + cuttingCost + totalPiercingCost + profit;
     document.getElementById('totalCostDisplay').textContent = `Koncna cena: ${finalPrice.toFixed(2)} EUR`;
+
+    // Dodaj ime in podjetje v povzetek
+    const recipientName = document.getElementById('recipientName').value;
+    const companyName = document.getElementById('companyName').value;
+
+    // Dodamo prikaz imena prejemnika in podjetja
+    document.getElementById('recipientSummary').textContent = `Prejemnik: ${recipientName}, Podjetje: ${companyName}`;
+
+
 }
 
 
@@ -136,6 +145,10 @@ function exportToPDF() {
                 let sellingPrice = document.getElementById('sellingPriceDisplay') ? document.getElementById('sellingPriceDisplay').textContent : totalCost;
 
 
+                 // Dodaj ime prejemnika in ime podjetja v PDF
+                let recipientName = document.getElementById('recipientName').value;
+                let companyName = document.getElementById('companyName').value;
+
                 // Dodaj datum in številko ponudbe
                 doc.setFontSize(10);
                 const date = new Date().toLocaleDateString();
@@ -143,24 +156,28 @@ function exportToPDF() {
                 doc.text(`Datum izdelave: ${date}`, 140, 50);
                 doc.text(`Številka ponudbe: ${offerNumber}`, 140, 60);
 
+                // Dodaj ime in podjetje v PDF
+                doc.text(`Prejemnik: ${recipientName}`, 10, 60);
+                doc.text(`Podjetje: ${companyName}`, 10, 50);               
+
                 // Opis materiala in parametrov reza
-                doc.text(`Vrsta materiala: ${materialType}`, 10, 70);
-                doc.text(`Debelina: ${thickness} mm`, 10, 80);
-                doc.text(`Cena plocevine: ${sheetPrice}`, 10, 90);
-                doc.text(`Gabariti: ${dimensions}`, 10, 100);
-                doc.text(`Cas reza: ${cutTime} sekund`, 10, 110);
-                doc.text(`Število prebojev: ${numCuts} prebojev`, 10, 120);
-                doc.text(`Cena kilovatne ure (kWh): ${kWhPrice} EUR`, 10, 130);
-                doc.text(`Amortizacija: ${amortization} EUR/h`, 10, 140);
-                doc.text(`Marža: ${profitMargin} %`, 10, 150);
+                doc.text(`Vrsta materiala: ${materialType}`, 10, 90);
+                doc.text(`Debelina: ${thickness} mm`, 10, 100);
+                doc.text(`Cena plocevine: ${sheetPrice}`, 10, 110);
+                doc.text(`Gabariti: ${dimensions}`, 10, 120);
+                doc.text(`Cas reza: ${cutTime} sekund`, 10, 130);
+                doc.text(`Število prebojev: ${numCuts} prebojev`, 10, 140);
+                doc.text(`Cena kilovatne ure (kWh): ${kWhPrice} EUR`, 10, 150);
+                doc.text(`Amortizacija: ${amortization} EUR/h`, 10, 160);
+                doc.text(`Marža: ${profitMargin} %`, 10, 170);
 
                 // Stroškovni izračuni
-                doc.text('Izracun:', 10, 180);
-                doc.text(`1. ${materialCost}`, 10, 190);
-                doc.text(`2. ${cuttingCost}`, 10, 200);
-                doc.text(`3. ${piercingCost}`, 10, 210);
-                doc.text(`4. ${profit}`, 10, 220); // Dodano za maržo
-                doc.text(`5. ${totalCost}`, 10, 230);
+                doc.text('Izracun:', 10, 200);
+                doc.text(`1. ${materialCost}`, 10, 210);
+                doc.text(`2. ${cuttingCost}`, 10, 220);
+                doc.text(`3. ${piercingCost}`, 10, 230);
+                doc.text(`4. ${profit}`, 10, 240); // Dodano za maržo
+                doc.text(`5. ${totalCost}`, 10, 250);
 
                 // Dodaj footer
                 doc.setFontSize(8); // Manjša pisava za footer

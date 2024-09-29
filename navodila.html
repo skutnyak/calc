@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navodila za uporabo</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Povezava na vaš CSS za konsistenten dizajn -->
+</head>
+<body>
+    <header>
+        <img src="https://www.fc-modul.si/wp-content/uploads/2020/06/FC-Modul-Logo.png" alt="FC Modul Logo" class="logo">
+        <h1>Navodila za uporabo</h1>
+        <button class="calculate-button" onclick="window.location.href='index.html'">Nazaj</button>
+    </header>
+    
+    <div class="container">
+        <!-- Prvi stolpec - Navodila za vnos podatkov za material -->
+        <div class="column">
+            <h2>Material</h2>
+            <div class="form-group">
+                <h3>1. Vrsta materiala</h3>
+                <p>Izberite **Železo** iz spustnega menija. V tem primeru smo izbrali železo, saj bomo za naš izračun uporabili železno pločevino.</p>
+            </div>
+            <div class="form-group">
+                <h3>2. Debelina materiala</h3>
+                <p>Izberite **2 mm**. Debelina pločevine neposredno vpliva na končno ceno, zato smo izbrali debelino 2 mm za ta primer.</p>
+            </div>
+            <div class="form-group">
+                <h3>3. Format pločevine</h3>
+                <p>Izberite **1000x2000 mm**. To je običajen format pločevine, ki ga bomo uporabili pri tem izračunu.</p>
+            </div>
+            <div class="form-group">
+                <h3>4. Cena pločevine in cena na kvadratni milimeter</h3>
+                <p>Program bo na podlagi zgornjih parametrov izračunal ceno pločevine in ceno na kvadratni milimeter. V tem primeru je cena pločevine **52 EUR** in cena na kvadratni milimeter **0.000026 EUR/mm²**.</p>
+            </div>
+        </div>
+
+        <!-- Drugi stolpec - Navodila za parametre razreza -->
+        <div class="column">
+            <h2>Parametri razreza</h2>
+            <div class="form-group">
+                <h3>1. Dimenzije gabarita</h3>
+                <p>Vnesite **dolžino gabarita 500 mm** in **širino gabarita 400 mm**. To bo določilo velikost površine, ki jo bomo rezali.</p>
+            </div>
+            <div class="form-group">
+                <h3>2. Cena porabljenega materiala</h3>
+                <p>Program bo izračunal stroške porabljenega materiala glede na površino reza. Za dimenzije **500 mm x 400 mm** bo strošek materiala **5.20 EUR**.</p>
+            </div>
+            <div class="form-group">
+                <h3>3. Čas reza</h3>
+                <p>Vnesite **čas reza 120 sekund**. To je čas, ki ga laser potrebuje za izvedbo reza.</p>
+            </div>
+            <div class="form-group">
+                <h3>4. Cena preboja in število prebojev</h3>
+                <p>Vnesite **ceno preboja 0,5 EUR** in **število prebojev 5**. Program bo izračunal stroške prebojev, ki znašajo **2.50 EUR** za 5 prebojev.</p>
+            </div>
+            <div class="form-group">
+                <h3>5. Moč laserja in cena kilovatne ure</h3>
+                <p>Vnesite **moč laserja 3000 W** in **ceno kilovatne ure 0,9 EUR/kWh**. Skupni strošek porabljene električne energije za ta rez bo **0.09 EUR**.</p>
+            </div>
+        </div>
+
+        <!-- Tretji stolpec - Navodila za parametre dobička -->
+        <div class="column">
+            <h2>Parametri dobička</h2>
+            <div class="form-group">
+                <h3>1. Delovna ura operaterja</h3>
+                <p>Vnesite **urno postavko operaterja 30 EUR/h**. Na podlagi časa reza (120 sekund) bo program izračunal stroške dela, ki znašajo **1 EUR**.</p>
+            </div>
+            <div class="form-group">
+                <h3>2. Menjava pločevine</h3>
+                <p>Če je potrebna menjava pločevine, vnesite stroške **10 EUR**. V tem primeru smo dodali strošek menjave, zato so ti stroški vključeni v izračun.</p>
+            </div>
+            <div class="form-group">
+                <h3>3. Amortizacija strojev</h3>
+                <p>Vnesite **amortizacijo 0,05 EUR/h**. Amortizacija se uporablja za pokritje stroškov obrabe strojev, ki znašajo majhen znesek glede na čas reza.</p>
+            </div>
+            <div class="form-group">
+                <h3>4. Marža</h3>
+                <p>Vnesite **maržo 20%**. Na podlagi skupnih stroškov reza in prebojev bo program izračunal dobiček, ki znaša **2.72 EUR**.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Povzetek in gumbi -->
+   <div class="summary">
+    <h2>Povzetek</h2>
+    <div class="form-group" id="summary"> 
+        <p>Končna cena za ta primer bo **21.51 EUR**, kar vključuje vse stroške materiala, razreza, prebojev in dobička.</p>
+    </div>
+    
+    <button class="calculate-button" onclick="window.location.href='index.html'">Nazaj na izračun</button>
+</div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

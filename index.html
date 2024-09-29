@@ -11,6 +11,8 @@
     <header>
         <img src="https://www.fc-modul.si/wp-content/uploads/2020/06/FC-Modul-Logo.png" alt="FC Modul Logo" class="logo">
         <h1>Izračun laserskega razreza</h1>
+
+
     </header>
     
     <div class="container">
@@ -125,19 +127,38 @@
     </div>
 
     <!-- Povzetek in gumbi -->
-   <div class="summary">
-    <h2>Povzetek</h2>
-    <div class="form-group" id="summary"> 
-        <p id="materialCostDisplay"><strong>Cena porabljenega materiala:</strong> --- EUR</p>
-        <p id="cuttingCostDisplay"><strong>Cena razreza:</strong> --- EUR</p>
-        <p id="piercingCostDisplay"><strong>Cena prebojev:</strong> --- EUR</p>
-        <p id="profitDisplay"><strong>Marža:</strong> --- EUR</p>
-        <p id="totalCostDisplay"><strong>Končna cena:</strong> --- EUR</p>
+ <div class="summary-wrapper">
+    <div class="summary">
+        <h2>Povzetek</h2>
+        <div class="form-group" id="summary"> 
+            <p id="materialCostDisplay"><strong>Cena porabljenega materiala:</strong> --- EUR</p>
+            <p id="cuttingCostDisplay"><strong>Cena razreza:</strong> --- EUR</p>
+            <p id="piercingCostDisplay"><strong>Cena prebojev:</strong> --- EUR</p>
+            <p id="profitDisplay"><strong>Marža:</strong> --- EUR</p>
+            <p id="totalCostDisplay"><strong>Končna cena:</strong> --- EUR</p>
+        </div>
     </div>
-    
-    <button class="calculate-button" onclick="calculateAll()">Izračunaj</button>
-    <button class="pdf-button" onclick="exportToPDF()">Izvozi v PDF</button>
+
+    <!-- Dodan stolpec za prejemnika in podjetje -->
+    <div class="recipient-info">
+        <h2>Prejemnik</h2>
+        <div class="form-group">
+            <label for="companyName">Ime podjetja:</label>
+            <input type="number-prejemnik" id="companyName" placeholder="Vpišite ime podjetja" />
+        </div>
+        <div class="form-group">
+              <label for="recipientName">Ime in priimek prejemnika:</label>
+            <input type="number-prejemnik" id="recipientName" placeholder="Vpišite ime in priimek prejemnika" />
+        </div>
+    </div>
 </div>
+
+<!-- Gumbi ostanejo na istem mestu -->
+<button class="calculate-button" onclick="calculateAll()">Izračunaj</button>
+<button class="pdf-button" onclick="exportToPDF()">Izvozi v PDF</button>
+<button class="help-button" onclick="window.location.href='navodila.html'">Navodila</button>
+
+
 
 
     <script src="scripts.js"></script>

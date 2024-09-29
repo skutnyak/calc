@@ -69,3 +69,56 @@ function populatePriceTable(tableId, prices) {
         tableBody.appendChild(row);
     }
 }
+function savePrices() {
+    const ironPrices = getPricesFromTable('ironPrices');
+    const inoxPrices = getPricesFromTable('inoxPrices');
+    const aluminumPrices = getPricesFromTable('aluminumPrices');
+
+    const data = {
+        iron: {
+            "1000x2000": ironPrices,
+            "1250x2500": ironPrices
+        },
+        inox: {
+            "1000x2000": inoxPrices,
+            "1250x2500": inoxPrices
+        },
+        aluminum: {
+            "1000x2000": aluminumPrices,
+            "1250x2500": aluminumPrices
+        }
+    };
+
+    // Pošlji podatke na PHP skripto za shranjevanje
+    fetch('save_prices.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.status === "success") {
+            alert('Cene so bile uspešno shranjene!');
+        } else {
+            alert('Prišlo je do napake: ' + result.message);
+        }
+    })
+    .catch(error => {
+        console.error('Napaka pri shranjevanju cen:', error);
+    });
+}
+function getPricesFromTable(tableId) {
+    const tableBody = document.getElementById(tableId);
+    const rows = tableBody.getElementsByTagName('tr');
+    const prices = {};
+
+    for (const row of rows) {
+        const thickness = row.cells[0].textContent;
+        const price = row.cells[1].getElementsByTagName('input')[0].value;
+        prices[thickness] = parseFloat(price); // Pretvori vrednost v številko
+    }
+
+    return prices;
+}
