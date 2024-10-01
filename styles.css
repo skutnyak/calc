@@ -204,7 +204,8 @@ input:checked + .slider:before {
 #materialCostDisplay,
 #cuttingCostDisplay,
 #piercingCostDisplay,
-#totalCostDisplay {
+#totalCostDisplay,
+#profitDisplay {
     font-size: 18px;
     font-weight: bold;
 }

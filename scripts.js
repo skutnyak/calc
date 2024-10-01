@@ -141,7 +141,7 @@ function exportToPDF() {
                 let cuttingCost = document.getElementById('cuttingCostDisplay').textContent;
                 let piercingCost = document.getElementById('piercingCostDisplay').textContent;
                 let totalCost = document.getElementById('totalCostDisplay').textContent;
-                let profit = document.getElementById('profitDisplay') ? document.getElementById('profitDisplay').textContent : 'N/A';
+                let profit = document.getElementById('profitDisplay') ? document.getElementById('profitDisplay').textContent : profitDisplay;
                 let sellingPrice = document.getElementById('sellingPriceDisplay') ? document.getElementById('sellingPriceDisplay').textContent : totalCost;
 
 

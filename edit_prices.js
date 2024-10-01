@@ -70,45 +70,48 @@ function populatePriceTable(tableId, prices) {
     }
 }
 function savePrices() {
+    const sliderValue = document.getElementById('sheetSizeSlider').value;
+    const selectedFormat = sliderValue === "0" ? "1000x2000" : "1250x2500";
+
     const ironPrices = getPricesFromTable('ironPrices');
     const inoxPrices = getPricesFromTable('inoxPrices');
     const aluminumPrices = getPricesFromTable('aluminumPrices');
 
-    const data = {
-        iron: {
-            "1000x2000": ironPrices,
-            "1250x2500": ironPrices
-        },
-        inox: {
-            "1000x2000": inoxPrices,
-            "1250x2500": inoxPrices
-        },
-        aluminum: {
-            "1000x2000": aluminumPrices,
-            "1250x2500": aluminumPrices
-        }
-    };
+    // Najprej pridobi obstoječe cene iz JSON datoteke
+    fetch('cena.json')
+        .then(response => response.json())
+        .then(data => {
+            // Posodobi samo cene za izbrani format, druge formate pusti nespremenjene
+            data.iron[selectedFormat] = ironPrices;
+            data.inox[selectedFormat] = inoxPrices;
+            data.aluminum[selectedFormat] = aluminumPrices;
 
-    // Pošlji podatke na PHP skripto za shranjevanje
-    fetch('save_prices.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.status === "success") {
-            alert('Cene so bile uspešno shranjene!');
-        } else {
-            alert('Prišlo je do napake: ' + result.message);
-        }
-    })
-    .catch(error => {
-        console.error('Napaka pri shranjevanju cen:', error);
-    });
+            // Pošlji posodobljene podatke nazaj na strežnik za shranjevanje
+            fetch('save_prices.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === "success") {
+                    alert('Cene so bile uspešno shranjene!');
+                } else {
+                    alert('Prišlo je do napake: ' + result.message);
+                }
+            })
+            .catch(error => {
+                console.error('Napaka pri shranjevanju cen:', error);
+            });
+        })
+        .catch(error => {
+            console.error('Napaka pri nalaganju obstoječih cen:', error);
+        });
 }
+
+
 function getPricesFromTable(tableId) {
     const tableBody = document.getElementById(tableId);
     const rows = tableBody.getElementsByTagName('tr');
