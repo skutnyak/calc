@@ -301,8 +301,10 @@ input:checked + .slider:before {
         text-align: center; /* Naslov poravnan na sredino */
     }
 
+}
+
     /* Polja za prejemnika (ime podjetja in ime prejemnika) čez cel zaslon */
-    .recipient-info input[type="text"] {
+    .recipient-info input[type="number-prejemnik"] {
         width: 90%; /* Polja zavzamejo celotno širino */
         padding: 10px;
         font-size: 16px;
