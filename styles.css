@@ -303,7 +303,7 @@ input:checked + .slider:before {
 
     /* Polja za prejemnika (ime podjetja in ime prejemnika) čez cel zaslon */
     .recipient-info input[type="text"] {
-        width: 100%; /* Polja zavzamejo celotno širino */
+        width: 90%; /* Polja zavzamejo celotno širino */
         padding: 10px;
         font-size: 16px;
     }
@@ -321,20 +321,22 @@ input:checked + .slider:before {
     }
 
     .summary {
-        width: 100%; /* Povzetek naj bo širši */
+        width: 90%; /* Povzetek naj bo širši */
         margin-bottom: 20px;
-        text-align: center; /* Poravnava besedila na sredino */
+        text-align: center;/* Poravnava besedila na sredino */
+        font-size: 12px;
     }
 
     .recipient-info {
-        width: 100%; /* Prejemnik naj bo širši */
+        width: 90%; /* Prejemnik naj bo širši */
         margin-bottom: 20px;
         text-align: center;
+        font-size: 12x;
     }
 
     /* Posamezni stolpci za povzetek in prejemnika */
     .summary-wrapper {
         flex-direction: column;
-        width: 100%;
+        width: 90%;
     }
 }
