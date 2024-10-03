@@ -285,44 +285,56 @@ input:checked + .slider:before {
     }
 }
 /* Prilagoditev gumbov za mobilne naprave */
-@media only screen and (max-width: 768px) {
-    button {
-        padding: 15px;
-        font-size: 18px;
-    }
-}
-@media only screen and (max-width: 768px) {
-    .form-group {
-        margin-bottom: 10px;
-    }
-
-    input, select {
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    label {
-        font-size: 14px;
-    }
-
-    .summary {
-        font-size: 16px;
-    }
-
-    #materialCostDisplay, #cuttingCostDisplay, #piercingCostDisplay, #totalCostDisplay, #profitDisplay {
-        font-size: 16px;
-    }
-}
-@media only screen and (max-width: 768px) {
-    .summary-wrapper {
+@media (max-width: 600px) {
+    /* Header poravnava na sredino */
+    header {
         flex-direction: column;
+        align-items: center; /* Poravnava vsega na sredino */
+    }
+
+    .logo {
+        margin-bottom: 10px; /* Prostor med logotipom in naslovom */
+    }
+
+    h1 {
+        font-size: 20px;
+        text-align: center; /* Naslov poravnan na sredino */
+    }
+
+    /* Polja za prejemnika (ime podjetja in ime prejemnika) čez cel zaslon */
+    .recipient-info input[type="text"] {
+        width: 100%; /* Polja zavzamejo celotno širino */
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    /* Poravnava vseh elementov na sredino */
+    .container, .summary-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Širina za stolpce - poravnava na sredino */
+    .column {
+        width: 90%; /* Stolpci bodo širši in bolj osredotočeni */
+        margin-bottom: 20px;
     }
 
     .summary {
-        margin-bottom: 20px; /* Dodaj razmik med Povzetkom in Prejemnikom */
+        width: 100%; /* Povzetek naj bo širši */
+        margin-bottom: 20px;
+        text-align: center; /* Poravnava besedila na sredino */
     }
 
     .recipient-info {
-        margin-top: 0; /* Odstrani zgornji razmik, če obstaja */
+        width: 100%; /* Prejemnik naj bo širši */
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Posamezni stolpci za povzetek in prejemnika */
+    .summary-wrapper {
+        flex-direction: column;
+        width: 100%;
     }
 }
