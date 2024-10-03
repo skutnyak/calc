@@ -125,6 +125,12 @@ button {
     color: white;
 }
 
+/* Plavi gumb za jezik */
+.slo-button {
+    background-color: blue;
+    color: white;
+}
+
 /* Gumb ob premiku miške */
 .calculate-button:hover {
     background-color: lightgreen; /* Barva ob hoverju za zeleni gumb */
@@ -133,6 +139,11 @@ button {
 .pdf-button:hover {
     background-color: lightcoral; /* Barva ob hoverju za rdeči gumb */
 }
+
+.slo-button:hover {
+    background-color: lightblue; /* Barva ob hoverju za rdeči gumb */
+}
+
 
 /* Povzetek in rezultati, poravnano levo */
 .summary {
@@ -240,4 +251,78 @@ input:checked + .slider:before {
 
 .recipient-info .form-group {
     margin-bottom: 10px;
+}
+/* Slog za mobilne naprave (zasloni manjši od 768px) */
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* Gumbi naj zasedejo celotno širino */
+    .calculate-button, .pdf-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* Prilagoditev besedila in velikosti elementov za manjše zaslone */
+    input, select {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
+/* Prilagoditev gumbov za mobilne naprave */
+@media only screen and (max-width: 768px) {
+    button {
+        padding: 15px;
+        font-size: 18px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .form-group {
+        margin-bottom: 10px;
+    }
+
+    input, select {
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    .summary {
+        font-size: 16px;
+    }
+
+    #materialCostDisplay, #cuttingCostDisplay, #piercingCostDisplay, #totalCostDisplay, #profitDisplay {
+        font-size: 16px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .summary-wrapper {
+        flex-direction: column;
+    }
+
+    .summary {
+        margin-bottom: 20px; /* Dodaj razmik med Povzetkom in Prejemnikom */
+    }
+
+    .recipient-info {
+        margin-top: 0; /* Odstrani zgornji razmik, če obstaja */
+    }
 }
