@@ -8,10 +8,8 @@ body {
 
 /* Slog za glavo in logotip */
 header {
-    position: relative; /* Omogoča pozicioniranje absolutnih elementov */
     padding: 10px 20px;
     background-color: #f4f4f4;
-    color: white;
     display: flex;
     align-items: center;
 }
@@ -22,38 +20,19 @@ header {
 }
 
 h1 {
-    flex-grow: 1; /* Razširi naslov, da zapolni preostali prostor med logotipom in gumbom */
+    flex-grow: 1;
     margin: 0;
     color: #333;
     font-size: 24px;
 }
 
-/* Slog za gumb Navodila */
-.help-button {
-    position: absolute;
-    top: 10px; /* Razdalja od zgornjega roba headerja */
-    right: 20px; /* Razdalja od desnega roba headerja */
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.help-button:hover {
-    background-color: #45a049;
-}
-
 /* Splošni slog za vse stolpce */
 .container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 20px;
 }
 
-/* Slog za vsak stolpec posebej */
 .column {
     background-color: white;
     padding: 20px;
@@ -61,11 +40,7 @@ h1 {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 30%;
 }
-.column select {
-    width: 100%;
-}
 
-/* Naslovi v stolpcih */
 h2 {
     text-align: left;
 }
@@ -82,6 +57,7 @@ label {
 }
 
 input[type="number"],
+input[type="text"],
 select {
     width: 100%;
     padding: 8px;
@@ -91,17 +67,6 @@ select {
     font-size: 14px;
 }
 
-input[type="number-prejemnik"],
-select {
-    width: 30%;
-    padding: 8px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-
 /* Gumbi */
 button {
     padding: 10px 20px;
@@ -110,235 +75,85 @@ button {
     border-radius: 5px;
     cursor: pointer;
     margin: 5px;
-    transition: background-color 0.9s ease;
+    transition: background-color 0.3s ease;
 }
 
-/* Zeleni gumb za izračun */
 .calculate-button {
     background-color: green;
     color: white;
 }
 
-/* Rdeči gumb za PDF */
 .pdf-button {
     background-color: red;
     color: white;
 }
 
-/* Plavi gumb za jezik */
-.slo-button {
-    background-color: blue;
-    color: white;
-}
-
-/* Gumb ob premiku miške */
 .calculate-button:hover {
-    background-color: lightgreen; /* Barva ob hoverju za zeleni gumb */
+    background-color: lightgreen;
 }
 
 .pdf-button:hover {
-    background-color: lightcoral; /* Barva ob hoverju za rdeči gumb */
+    background-color: lightcoral;
 }
 
-.slo-button:hover {
-    background-color: lightblue; /* Barva ob hoverju za rdeči gumb */
-}
-
-
-/* Povzetek in rezultati, poravnano levo */
-.summary {
-    text-align: left;
-    padding: 20px;
-}
-
-/* Slog za slider */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background-color: #4CAF50;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-/* Okrogli slider */
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-
-/* Doda razmik na levi strani sliderja */
-.switch {
-    margin-top: 20px;
-}
-
-/* Povzetek za prikaz izračunanih vrednosti */
-#materialCostDisplay,
-#cuttingCostDisplay,
-#piercingCostDisplay,
-#totalCostDisplay,
-#profitDisplay {
-    font-size: 18px;
-    font-weight: bold;
-}
-.form-group-horizontal {
-    display: flex;
-    justify-content: space-between;
-}
-
-.form-group-horizontal .form-group {
-    flex: 1;
-    margin-right: 10px;
-}
-
-.form-group-horizontal .form-group:last-child {
-    margin-right: 0;
-}
+/* Povzetek in prejemnik v okvirju */
 .summary-wrapper {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
+    margin-left: 20px; /* Dodan odmik na levi strani */
+    margin-right: 20px; /* Dodan odmik na desni strani */
 }
 
-.summary {
-    flex: 1;
-    margin-right: 20px;
-}
-
+.summary,
 .recipient-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 45%; /* Enaka širina kot zgornji stolpci */
+}
+#materialCostDisplay,
+#cuttingCostDisplay,
+#piercingCostDisplay,
+#profitDisplay,
+#totalCostDisplay {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.recipient-info .form-group {
-    margin-bottom: 10px;
-}
-/* Slog za mobilne naprave (zasloni manjši od 768px) */
-@media only screen and (max-width: 768px) {
+/* Media query za manjše zaslone */
+@media only screen and (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
     .container {
+        flex-direction: column;
+        align-items: stretch;
+        margin: 10px;
+    }
+
+    .column,
+    .summary,
+    .recipient-info {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    button {
+        width: 100%;
+        align-items: center;
+    }
+        /* Povzetek in prejemnik postavljena eden pod drugim */
+    .summary-wrapper {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .column {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    /* Gumbi naj zasedejo celotno širino */
-    .calculate-button, .pdf-button {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    /* Prilagoditev besedila in velikosti elementov za manjše zaslone */
-    input, select {
-        font-size: 16px;
-        padding: 12px;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    h2 {
-        font-size: 18px;
-    }
-}
-/* Prilagoditev gumbov za mobilne naprave */
-@media (max-width: 600px) {
-    /* Header poravnava na sredino */
-    header {
-        flex-direction: column;
-        align-items: center; /* Poravnava vsega na sredino */
-    }
-
-    .logo {
-        margin-bottom: 10px; /* Prostor med logotipom in naslovom */
-    }
-
-    h1 {
-        font-size: 20px;
-        text-align: center; /* Naslov poravnan na sredino */
-    }
-
-}
-
-    /* Polja za prejemnika (ime podjetja in ime prejemnika) čez cel zaslon */
-    .recipient-info input[type="number-prejemnik"] {
-        width: 90%; /* Polja zavzamejo celotno širino */
-        padding: 10px;
-        font-size: 16px;
-    }
-
-    /* Poravnava vseh elementov na sredino */
-    .container, .summary-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* Širina za stolpce - poravnava na sredino */
-    .column {
-        width: 90%; /* Stolpci bodo širši in bolj osredotočeni */
-        margin-bottom: 20px;
-    }
-
-    .summary {
-        width: 90%; /* Povzetek naj bo širši */
-        margin-bottom: 20px;
-        text-align: center;/* Poravnava besedila na sredino */
-        font-size: 12px;
-    }
-
-    .recipient-info {
-        width: 90%; /* Prejemnik naj bo širši */
-        margin-bottom: 20px;
-        text-align: center;
-        font-size: 12x;
-    }
-
-    /* Posamezni stolpci za povzetek in prejemnika */
-    .summary-wrapper {
-        flex-direction: column;
-        width: 90%;
-    }
 }
