@@ -204,13 +204,13 @@ window.onload = function() {
     document.getElementById('materialType').value = 'inox'; // Vrsta materiala - Inox
     document.getElementById('thickness').value = '2'; // Debelina materiala - 2 mm
     document.getElementById('sheetSize').value = '1000x2000'; // Format pločevine - 1000x2000
-    document.getElementById('piercingCost').value = '0.5'; // Cena preboja - 0,5 EUR
-    document.getElementById('laserPower').value = '3000'; // Moč laserja - 3000 W
+    document.getElementById('piercingCost').value = '0.10'; // Cena preboja - 0,5 EUR
+    document.getElementById('laserPower').value = '18000'; // Moč laserja - 3000 W
     document.getElementById('energyCost').value = '0.9'; // Cena kilovatne ure - 0,9 EUR
-    document.getElementById('operatorRate').value = '30'; // Delovna ura operaterja - 30 EUR/h
-    document.getElementById('sheetChangeCost').value = '10'; // Menjava pločevine - 10 EUR
+    document.getElementById('operatorRate').value = '60'; // Delovna ura operaterja - 30 EUR/h
+    document.getElementById('sheetChangeCost').value = '1'; // Menjava pločevine - 10 EUR
     document.getElementById('amortization').value = '0.50'; // Amortizacija - 0,50 EUR/h
-    document.getElementById('profitMargin').value = '20'; // Marža - 20%
+    document.getElementById('profitMargin').value = '50'; // Marža - 20%
 
 
 
